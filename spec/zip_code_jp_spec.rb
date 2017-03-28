@@ -34,6 +34,28 @@ describe ZipCodeJp do
     end
   end
 
+  describe '#find_first' do
+    subject { ZipCodeJp.find_first zip_code }
+
+    context 'when the zip code specifies an area' do
+      let(:zip_code) { '102-0072' }
+
+      it { is_expected.to be_an(ZipCodeJp::Address) }
+    end
+
+    context 'when the zip code specifies multiple areas' do
+      let(:zip_code) { '0790177' }
+
+      it { is_expected.to be_an(ZipCodeJp::Address) }
+    end
+
+    context 'when the zip code specifies no area' do
+      let(:zip_code) { '0000000' }
+
+      it { is_expected.to eq(false) }
+    end
+  end
+
   describe 'ZipCodeJp.export_json' do
     it 'does NOT raise any errors' do
       expect { ZipCodeJp.export_json }.not_to raise_error
