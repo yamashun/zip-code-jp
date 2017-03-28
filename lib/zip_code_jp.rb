@@ -30,4 +30,13 @@ module ZipCodeJp
     end
     return false
   end
+
+  def find_first(zip_code)
+    result = find(zip_code)
+    if result.is_a? Array
+      result.first
+    else
+      result
+    end
+  end
 end
