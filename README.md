@@ -36,6 +36,11 @@ If more than one address corresponds
       address.zip_code # 0790177
     end
 
+So if you want to get certainly one address
+
+    address = ZipCodeJp.find_first '0790177'
+    address.class # ZipCodeJp::Address
+
 Update the JSON data of postal code
 
     ZipCodeJp.export_json
