@@ -14,14 +14,14 @@ module ZipCodeJp
   def find(zip_code)
     zip_code = zip_code.gsub(/-/, '')
     json_file = DATA_DIR + '/zip_code/' + zip_code.slice(0,3) + '.json'
-    if (File.exists?(json_file))
+    if (File.exist?(json_file))
       data = JSON.parse(File.open(json_file).read)
       address_data = data[zip_code.slice(3,4)]
 
       if address_data.instance_of?(Array)
         results = []
         address_data.each do |a|
-          results.push ZipCodeJp::Address.new(a) 
+          results.push ZipCodeJp::Address.new(a)
         end
         return results
       end
